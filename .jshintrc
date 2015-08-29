@@ -1,0 +1,24 @@
+{
+  "esnext": true,
+  "curly": true,
+  "eqeqeq": true,
+  "freeze": true,
+  "funcscope": true,
+  "undef": true,
+  "predef": [
+    "__dirname",
+    "require",
+    "process",
+    "exports",
+    "module",
+    "console",
+    "setTimeout",
+    "clearTimeout",
+    "describe",
+    "it",
+    "before",
+    "after",
+    "beforeEach",
+    "afterEach"
+  ]
+}
