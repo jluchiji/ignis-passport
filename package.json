@@ -1,6 +1,6 @@
 {
   "name": "ignis-passport",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Passport.js authentication for Ignis.js",
   "main": "lib/index.js",
   "scripts": {
