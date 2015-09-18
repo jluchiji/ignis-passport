@@ -41,15 +41,17 @@ describe('extension', function() {
   it('should mount modules to the specified namespace', function() {
     this.ignis.use(extension);
 
-    expect(this.ignis.auth).to.be.an('object');
-    expect(this.ignis.auth.__alias).to.be.an('object');
-    expect(this.ignis.auth.__options).to.be.an('object');
+    return this.ignis.startup.then(() => {
+      expect(this.ignis.auth).to.be.an('object');
+      expect(this.ignis.auth.__alias).to.be.an('object');
+      expect(this.ignis.auth.__options).to.be.an('object');
 
-    expect(this.ignis.root.use).to.be.calledTwice;
-    expect(this.ignis.factories.length).to.equal(1);
+      expect(this.ignis.root.use).to.be.calledTwice;
+      expect(this.ignis.factories.length).to.equal(1);
 
-    expect(this.ignis.auth.jwt).to.be.a('function');
-    expect(this.ignis.auth.local).to.be.a('function');
+      expect(this.ignis.auth.jwt).to.be.a('function');
+      expect(this.ignis.auth.local).to.be.a('function');
+    });
 
   });
 
@@ -122,7 +124,7 @@ describe('callback(3)', function() {
   });
 
   it('should not generate errors when successful', function() {
-    var cb = extension.passportCallback(null, null, this.callback);
+    var cb = extension.passportCallback(Object.create(null), null, this.callback);
 
     cb(null, Object.create(null), null);
     expect(this.callback.calledOnce).to.equal(true);
