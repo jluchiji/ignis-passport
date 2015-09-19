@@ -66,6 +66,7 @@ export function passportCallback(req, res, next) {
       let error = new Error('Authentication Failed');
       error.name = 'IgnisError';
       error.status = 401;
+      error.sensitive = true;
       error.details = {
         sensitive: true,
         reason: info
