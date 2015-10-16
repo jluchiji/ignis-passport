@@ -71,6 +71,7 @@ describe('factory(2)', function() {
 
   beforeEach(function() {
     this.ignis = new Ignis();
+    this.ignis.use(extension);
 
     Passport.use = Sinon.spy();
     Passport.authenticate = Sinon.spy(function() {
