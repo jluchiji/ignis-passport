@@ -142,7 +142,7 @@ export default class PassportService extends Ignis.Service {
   /*!
    * @static (decorator) Specifies HTTP endpoint's auth strategy.
    */
-  @Ignis.Service.export({ static: true, path: 'Http.Endpoint.auth' })
+  @Ignis.Service.export({ static: true })
   static auth(strategy) {
     return Ignis.Http.Endpoint.option('auth', strategy);
   }
@@ -152,7 +152,7 @@ export default class PassportService extends Ignis.Service {
    * @static (decorator) Specifies HTTP endpoint's access control.
    * Intended to be used by 3rd party access control libraries.
    */
-  @Ignis.Service.export({ static: true, path: 'Http.Endpoint.access' })
+  @Ignis.Service.export({ static: true })
   static access(role) {
     return Ignis.Http.Endpoint.option('access', role);
   }
