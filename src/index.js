@@ -48,9 +48,18 @@ export default class PassportService extends Ignis.Service {
     http.pre(this.factory);
 
     /* Attach default authentication strategies */
-    this.strategy(JWT.Strategy);
-    this.strategy(Local.Strategy);
+    this.token = this.strategy(JWT.Strategy);
+    this.local = this.strategy(Local.Strategy);
 
+  }
+
+
+  /*!
+   * Export shorthand decorators.
+   */
+  postinit() {
+    Ignis.Http.Endpoint.auth = _.partial(Ignis.Http.Endpoint.option, 'auth');
+    Ignis.Http.Endpoint.access = _.partial(Ignis.Http.Endpoint.option, 'access');
   }
 
 
