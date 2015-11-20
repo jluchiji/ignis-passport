@@ -55,15 +55,6 @@ export default class PassportService extends Ignis.Service {
 
 
   /*!
-   * Export shorthand decorators.
-   */
-  postinit() {
-    Ignis.Http.Endpoint.auth = _.partial(Ignis.Http.Endpoint.option, 'auth');
-    Ignis.Http.Endpoint.access = _.partial(Ignis.Http.Endpoint.option, 'access');
-  }
-
-
-  /*!
    * Defines an authentication strategy.
    * Returns a wrapper function that unpsomisifies the callback.
    */
@@ -145,6 +136,25 @@ export default class PassportService extends Ignis.Service {
       const callback = this.callback(req, res, next);
       Passport.authenticate(strategy, options, callback)(req, res, next);
     };
+  }
+
+
+  /*!
+   * @static (decorator) Specifies HTTP endpoint's auth strategy.
+   */
+  @Ignis.Service.export({ static: true, path: 'Http.Endpoint.auth' })
+  static auth(strategy) {
+    return Ignis.Http.Endpoint.option('auth', strategy);
+  }
+
+
+  /*!
+   * @static (decorator) Specifies HTTP endpoint's access control.
+   * Intended to be used by 3rd party access control libraries.
+   */
+  @Ignis.Service.export({ static: true, path: 'Http.Endpoint.access' })
+  static access(role) {
+    return Ignis.Http.Endpoint.option('access', role);
   }
 
 }
