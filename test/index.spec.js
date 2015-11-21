@@ -41,6 +41,7 @@ beforeEach(co(function*() {
   this.ignis = Ignis();
 
   this.ignis.use(PassportService);
+  this.ignis.use(Ignis.Http);
   yield this.ignis.init();
 
   this.http = this.ignis.service('http');
